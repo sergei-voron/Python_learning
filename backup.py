@@ -12,8 +12,8 @@ Example on Windows:
 source = ['"C:\\My Documents"']
 Example on Mac OS X and Linux:
 """
-source = [input('Please enter the source directory path: ')]
-# source = ['./backup']
+# source = [input('Please enter the source directory path: ')]
+source = ['./backup']
 
 # print(source)
 
@@ -27,12 +27,12 @@ target_dir = 'E:\\Backup'
 Example on Mac OS X and Linux:
 """
 
-target_dir = input('Please enter the target directory path: ')
-# target_dir = './backup_new'
+# target_dir = input('Please enter the target directory path: ')
+target_dir = './backup_new'
 
 # print(target_dir)
 
-#Remember to change this to which folder you will be using
+# Remember to change this to which folder you will be using
 
 # Create target directory if it is not present
 if not os.path.exists(target_dir):
@@ -69,8 +69,16 @@ if not os.path.exists(today):
     os.mkdir(today)
     print(f'Successfully created directory {today}')
 
+
+def cmd_args():
+    args = ""
+    for arg in sys.argv[1:]:
+        args = f"{args} {arg}"
+    return args
+
+
 # 5. We use the zip command to put the files in a zip archive
-zip_command = f"zip -r {target} {' '.join(source)}"
+zip_command = f"zip -r {target} {' '.join(source)} {cmd_args()}"
 # Run the backup
 print(f'Zip command is: {zip_command}')
 print('Running:')
